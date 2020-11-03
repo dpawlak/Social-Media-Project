@@ -15,6 +15,7 @@ urlpatterns = [
     url(r"^posts/", include("posts.urls", namespace="posts")),
     url(r"^groups/",include("groups.urls", namespace="groups")),
     url(r"^uploads/", include(("uploads.urls", "uploads"), namespace='uploads')),
+    url(r"^portrait/", include(("portrait.urls", "portrait"), namespace='portrait')),
 ] 
 
 if settings.DEBUG:

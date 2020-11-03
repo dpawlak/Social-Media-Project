@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'groups',
     'posts',
     'uploads',
-    'portrait',
+    'portrait.apps.PortraitConfig',
 ]
 
 MIDDLEWARE = [
