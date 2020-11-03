@@ -1,0 +1,50 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PawlakTech</title>
+    <!-- Latest compiled and minified CSS -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'css/master.css'%}">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="{% url 'home' %}">PawlakTech</a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav navbar-right" id='nav-list'>
+            {% if user.is_authenticated %}
+              <li class='nav-item'><a href="{% url 'posts:create' %}" id='nav-item'>Post</a></li>
+              <li class='nav-item'><a href="{% url 'groups:all' %}" id='nav-item'>Groups</a></li>
+              <li class='nav-item'><a href="{% url 'groups:create' %}" id='nav-item'>Create Group</a></li>
+              <li class='nav-item'><a href="{% url 'accounts:logout' %}" id='nav-item'>Log out</a></li>
+            {% else %}
+              <li class='nav-item'><a href="{% url 'groups:all' %}" id='nav-item'>Groups</a></li>
+              <li class='nav-item'><a href="{% url 'accounts:login' %}" id='nav-item'>Log in</a></li>
+              <li class='nav-item'><a href="{% url 'accounts:signup' %}" id='nav-item'>Sign up</a></li>
+            {% endif %}
+          </ul>
+      </div>
+    </nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+
+  </body>
+</html>

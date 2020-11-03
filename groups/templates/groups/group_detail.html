@@ -1,0 +1,56 @@
+{% extends "groups/group_base.html" %}
+
+{% block pregroup %}
+
+{# Group column on left, displays name of group, member count, and leave button #}
+<div class='col-md-4'>
+	<div class='card'>
+		<div class='card-header'>
+			<h4>{{group.name}}</h4>
+		</div>
+		<div class='card-body'>
+			<p> Member Count: {{group.members.count}}</p>
+			{% if user in group.members.all %}
+				<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-md btn-fill btn-warning">Leave</a>
+			{% else %}
+				<a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-md btn-fill btn-warning"> Join</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block group_content %}
+
+
+{# If there are no posts in the group #}
+{% if group.posts.count == 0 %}
+<div class="col-md-8">
+	<div class='card'>
+		<div class='card-header'>
+			<h4>No posts in this group yet!</h4>
+		</div>
+	</div>	
+</div>	
+
+
+{# Display the posts #}
+{% else %}
+
+<div class='col-md-8'>
+	{% for post in group.posts.all %}	
+		{% include "posts/_post.html" %}
+	{% endfor %}
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% endblock %}

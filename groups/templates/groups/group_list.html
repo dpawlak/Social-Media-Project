@@ -1,0 +1,65 @@
+{% extends "groups/group_base.html" %}
+{% block pregroup %}
+
+{# If user is logged in, then display this card #}
+	{% if user.is_authenticated %}
+		<div class="col-md-4">
+			<div class='card'>
+				<div class='card-header'>
+					<h4>Welcome back
+						<a href="{% url 'posts:for_user' username=user.username %}">@{{user.username }}</a>
+					</h4>	
+				</div>
+				<div class='card-body'>
+					<a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning">
+						<span class="glyphicon glyphicon-plus-sign"></span> Create New Group!
+					</a>
+				</div>
+			</div>
+		</div>
+
+{# If user is not logged in, display this card #}
+	{% else %}
+		<div class='col-md-4'>
+			<div class='card'>
+				<div class='card-header'>
+					<h4>Groups</h4>
+				</div>
+				<div class='card-body'>
+					<p class='lead'>Please log in or sign up to join and create groups.</p>
+					<a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning">
+				<span class="glyphicon glyphicon-plus-sign"></span> Create New Group!
+				</a>
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+{% endblock %}
+
+{# Display the groups #}
+	{% block group_content %}
+		<div class="col-md-8">
+			{% for group in object_list %}
+				<div class='card'>
+					<div class='card-header'>
+						<h4>
+							<a href="{% url 'groups:single' slug=group.slug %}">{{ group.name }}</a>
+						</h4>
+					</div>
+					<div class="card-body">
+						{{ group.description_html|safe }}
+						<div class="row">
+							<div class="col-md-4">
+								<span class="badge">{{ group.members.count }}</span> member{{ group.members.count|pluralize }}
+							</div>
+							<div class="col-md-4">
+								<span class="badge">{{ group.posts.count }}</span> post{{ group.posts.count|pluralize }}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endblock %}
