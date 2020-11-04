@@ -3,18 +3,12 @@ from django.urls import reverse
 from django.db import models
 from django.utils.text import slugify
 # from accounts.models import User
-
 import misaka
-
 from django.contrib.auth import get_user_model
-User = get_user_model()
-
-# https://docs.djangoproject.com/en/1.11/howto/custom-template-tags/#inclusion-tags
-# This is for the in_group_members check template tag
 from django import template
+
+User = get_user_model()
 register = template.Library()
-
-
 
 class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -34,10 +28,8 @@ class Group(models.Model):
     def get_absolute_url(self):
         return reverse("groups:single", kwargs={"slug": self.slug})
 
-
     class Meta:
         ordering = ["name"]
-
 
 class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name="memberships", on_delete=models.CASCADE)

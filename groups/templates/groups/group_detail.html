@@ -1,4 +1,5 @@
 {% extends "groups/group_base.html" %}
+{% load static %}
 
 {% block pregroup %}
 
@@ -22,7 +23,6 @@
 {% endblock %}
 {% block group_content %}
 
-
 {# If there are no posts in the group #}
 {% if group.posts.count == 0 %}
 <div class="col-md-8">
@@ -32,7 +32,6 @@
 		</div>
 	</div>	
 </div>	
-
 
 {# Display the posts #}
 {% else %}
@@ -44,13 +43,5 @@
 </div>
 
 {% endif %}
-
-
-
-
-
-
-
-
 
 {% endblock %}

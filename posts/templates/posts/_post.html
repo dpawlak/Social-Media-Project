@@ -1,14 +1,18 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/portrait.css'%}">
+</head>
 
 	<div class='card'>
-		
 		<div class='card-header'>
 			<h4>
+				<img class="avatar" src="{{ post_user.portrait.image.url }}" >
 				<a href="{% url 'posts:for_user' username=post.user.username %}">
 					@{{ post.user.username }}
 				</a>
 			</h4>	
 		</div>
-
 		<div class='card-body'>
 			<p>{{ post.message_html|safe }}</p>
 			{% if user.is_authenticated and post.user == user and not hide_delete %}
@@ -16,24 +20,18 @@
 		{% endif %}
 		</div>	
 
-
-<div class='card-footer'>
+	<div class='card-footer'>
 		<p><time class="time">
 			<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
 			{{ post.created_at }}
 			</a>
 			</time
 			{% if post.group %}
-			in <a href="#">{{ post.group.name }}</a>
+			in <a>{{ post.group.name }}</a>
 			{% endif %}
-		</p>
-
-
-
-		
-</div>
-
-
+		</p>	
 	</div>
+
+</div>
 		
 

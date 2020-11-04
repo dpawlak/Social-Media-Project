@@ -1,5 +1,6 @@
 {% extends "groups/group_base.html" %}
 {% block pregroup %}
+{% load static %}
 
 {# If user is logged in, then display this card #}
 	{% if user.is_authenticated %}
