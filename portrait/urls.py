@@ -7,7 +7,7 @@ from uploads import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [ 
-    path('portrait_update', update_portrait_view, name = 'portrait_update'), 
+    path('portrait_update', portrait_update_form, name = 'portrait_update'), 
     path('portrait/success', views.success, name = 'success'), 
 ]
 

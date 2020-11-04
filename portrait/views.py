@@ -1,19 +1,24 @@
 from django.http import HttpResponse 
 from django.shortcuts import render, redirect 
 from .forms import *
+from django.contrib import messages
 
-def update_portrait_view(request):
+@login_required
+def portrait_update_form(request):
+    if request.method ==  'POST':
+        p_form = PortraitUpdateForm(request.POST, 
+                                    request.FILES, 
+                                    instance=request.user.portrait)
 
-    if request.method == 'POST':
-        form = UpdatePortraitForm(request.POST, request.FILES)
+        if p_form.is_valid():  
+            p_form.save()   
+            messages.success(request, f'Your account has been updated!') 
+            return redirect('../groups')                  
+    else: 
+        p_form = PortraitUpdateForm(instance=request.user.portrait)
 
-        if form.is_valid():
-            form.save()
-            return redirect('portrait/success')
+    context = {
+        'p_form': p_form
+    }
 
-    else:
-        form = UpdatePortraitForm()
-    return render(request, 'picture.html', {'form' : form})
-
-def success(request):
-    return HttpResponse('successfully updated')
+    return render(request, 'update_portrait.html', context)
