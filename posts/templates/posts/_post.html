@@ -7,7 +7,7 @@
 	<div class='card'>
 		<div class='card-header'>
 			<h4>
-				<img class="avatar" src="{{ post_user.portrait.image.url }}" >
+				<img class="avatar" src="{{ picture.url }}" >
 				<a href="{% url 'posts:for_user' username=post.user.username %}">
 					@{{ post.user.username }}
 				</a>

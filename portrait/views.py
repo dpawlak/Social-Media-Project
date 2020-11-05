@@ -22,3 +22,4 @@ def portrait_update_form(request):
     }
 
     return render(request, 'update_portrait.html', context)
+

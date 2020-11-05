@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'accounts',
     'groups',
-    'posts',
+    'posts.apps.PostsConfig',
     'uploads',
     'portrait.apps.PortraitConfig',
 ]
@@ -58,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'portrait.context_processors.portrait_pic',
             ],
         },
     },
