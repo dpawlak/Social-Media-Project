@@ -16,6 +16,12 @@
 		<img class="rounded-circle account-img" 
 				src="{{ post_user.portrait.image.url }}" 
 				id='portrait-img' />
+
+		{% if user == post_user %}
+		<a class="btn btn-secondary btn-sm" href="{% url 'portrait:portrait_update' %}">Update Pic</a>
+		{% endif %}
+
+
 	</div>
 </div>
 
@@ -45,7 +51,7 @@
 			<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
 			{{ post.created_at }}
 			</a>
-			</time
+		</time>
 			{% if post.group %}
 			in <a>{{ post.group.name }}</a>
 			{% endif %}

@@ -25,7 +25,7 @@
 			<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
 			{{ post.created_at }}
 			</a>
-			</time
+		</time>
 			{% if post.group %}
 			in <a>{{ post.group.name }}</a>
 			{% endif %}
